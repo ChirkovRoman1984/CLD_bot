@@ -28,7 +28,7 @@ class Config:
         return self.data['messages'].get(key, {}).get('image', {}).get('caption')
 
     def get_markup(self, key) -> InlineKeyboardMarkup:
-        markup = InlineKeyboardMarkup(row_width=self.data['messages'].get(key, {}).get('markup_row'))
+        markup = InlineKeyboardMarkup(row_width=self.data['messages'].get(key, {}).get('markup_row', 1))
         btns = self.get_buttons(key)
         markup.add(*btns)
         return markup

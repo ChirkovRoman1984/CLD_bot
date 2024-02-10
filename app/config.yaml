@@ -2,7 +2,7 @@ bucket: 'https://storage.yandexcloud.net/cld-bot-bucket/'
 
 messages:
   help:
-    description: Сообщение после команды /help
+    description: Сообщение после команды help
     message: |
       Приветствую, Док!
       Я чат-бот LCD-help (lungs cysts for doctors - help).
@@ -19,7 +19,7 @@ messages:
         callback_data: start
 
   start:
-    description: Сообщение после команды /start
+    description: Сообщение после команды start
     message: Приветствую, Док! Есть в лёгком газосодержащее пространство?
     markup_row: !!int 2
     buttons:
