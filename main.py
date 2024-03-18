@@ -31,7 +31,7 @@ async def process_event(event, dp: Dispatcher):
     await dp.process_update(update)
 
 
-async def handler(event, context):
+async def handler(event, _):  # async def handler(event, context):
     """Yandex.Cloud functions handler."""
 
     if event['httpMethod'] == 'POST':

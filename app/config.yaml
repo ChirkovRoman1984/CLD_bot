@@ -104,7 +104,7 @@ messages:
         callback_data: is_cyst
     image:
       caption:
-      url: 'бронхогенная киста.jpg'
+      url: 'бронхогенная киста.png'
 
   single_cyst_2:
     description: 2 вариант образования одиночной кисты
@@ -162,7 +162,7 @@ messages:
         callback_data: is_cyst
     image:
       caption: 'Фото: "Метастазы кистозного типа аденокарциномы ПЖ"'
-      url: 'кистозные метастазы.jpg'
+      url: 'кистозные метастазы.png'
 
   no_cyst:
     description: Варианты не относящиеся к кистам
