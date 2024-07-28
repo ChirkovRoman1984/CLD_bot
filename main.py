@@ -1,9 +1,3 @@
-"""
-Simple Bot assistant on Aiogram framework using
-Yandex.Cloud functions.
-"""
-
-
 import json
 import logging
 import os
@@ -16,14 +10,18 @@ from app.handlers import register_all_handlers
 log = logging.getLogger(__name__)
 log.setLevel(os.environ.get('LOGGING_LEVEL', 'INFO').upper())
 
+bot = Bot(os.environ.get('TOKEN'))
+dp = Dispatcher(bot)
+register_all_handlers(dp)
 
-async def process_event(event, dp: Dispatcher):
+
+async def process_event(update):
     """
     Converting an Yandex.Cloud functions event to an update and
     handling tha update.
     """
 
-    update = json.loads(event['body'])
+    # update = json.loads(event['body'])
     log.debug('Update: ' + str(update))
 
     Bot.set_current(dp.bot)
@@ -34,15 +32,6 @@ async def process_event(event, dp: Dispatcher):
 async def handler(event, _):  # async def handler(event, context):
     """Yandex.Cloud functions handler."""
 
-    if event['httpMethod'] == 'POST':
-        # Bot and dispatcher initialization
-        bot = Bot(os.environ.get('TOKEN'))
-        dp = Dispatcher(bot)
-
-        register_all_handlers(dp)
-
-        # await register_handlers(dp)
-        await process_event(event, dp)
-
-        return {'statusCode': 200, 'body': 'ok'}
-    return {'statusCode': 405}
+    for message in event["messages"]:
+        update = json.loads(message["details"]["message"]["body"])
+        await process_event(update)
